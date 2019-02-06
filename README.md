@@ -35,8 +35,11 @@ This project will be implemeneted with the following technologies:
 In addition to the entry file, there will be three scripts involved in this project:
 
 `cursor.js`: this will handle the parsing of user input necessary to move the cursor around the center hexagon
+
 `hexagon.js`: this will handle the generating and converging of the hexagons as well as the placements of the missing walls where the cursor can dodge the hexagon from
+
 `plane.js`: this will handle the pulsing of the playing field to the music of the beat as well as the center hexagon where the cursor will rotate
+
 `game.js`: this will handle the score and level progression
 
 ## Implementation Timeline
