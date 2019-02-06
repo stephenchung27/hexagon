@@ -1,0 +1,26 @@
+{
+  "name": "hexagon",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch --mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephenchung27/hexagon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stephenchung27/hexagon/issues"
+  },
+  "homepage": "https://github.com/stephenchung27/hexagon#readme",
+  "dependencies": {
+    "babel-loader": "^8.0.5",
+    "source-map": "^0.7.3",
+    "webpack": "^4.29.2",
+    "webpack-cli": "^3.2.3"
+  }
+}
