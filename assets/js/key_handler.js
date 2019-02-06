@@ -7,6 +7,7 @@ class KeyHandler {
     this.cursor = cursor;
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
   }
 
   handleKeyPress(e) {
@@ -20,6 +21,11 @@ class KeyHandler {
         this.cursor.moveCW();
         break;
     }
+  }
+
+  handleKeyUp(e) {
+    e.preventDefault();
+    this.cursor.stopMoving();
   }
 }
 

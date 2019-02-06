@@ -1,8 +1,8 @@
-import { W, Xcenter, Ycenter } from './game';
+import { H, Xcenter, Ycenter } from './game';
 
 class Hexagon {
   constructor() {
-    this.size = W;
+    this.size = H;
 
     this.drawHexagon = this.drawHexagon.bind(this);
   }
@@ -19,7 +19,7 @@ class Hexagon {
     }
 
     ctx.strokeStyle = "#FFFFFF";
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 20;
     ctx.stroke();
   }
 }

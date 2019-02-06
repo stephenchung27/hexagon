@@ -3,4 +3,9 @@ body {
   margin: 0;
   overflow: hidden;
   background-color: #000;
+  text-align: center;
+}
+
+canvas {
+  margin: 100px auto;
 }
