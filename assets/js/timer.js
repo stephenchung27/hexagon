@@ -1,6 +1,11 @@
+import { color1, rot, Xcenter, Ycenter } from './hexagon';
+
 class Timer {
-  constructor(ctx) {
+  constructor(ctx, plane) {
     this.ctx = ctx;
+    this.plane = plane;
+    this.rot = 0;
+
     this.time = 0;
     this.playing = false;
 
@@ -30,16 +35,31 @@ class Timer {
   }
 
   renderTime() {
-    this.ctx.font = "30px Arial";
-    this.ctx.fillText(this.parseTimer(this.time), 50, 50);
+    // Rotation must be actively subtracted from so that it remains stationary
+    // relative to the background
+    this.rot -= rot;
+    
+    this.ctx.save();
+
+    this.ctx.translate(Xcenter, Ycenter);
+    this.ctx.rotate(this.rot); 
+    // this.ctx.translate(-Xcenter, -Ycenter);
+    
+    this.ctx.font = "20px Acknowledge";
+    this.ctx.textAlign = "left";
+    this.ctx.fillStyle = "rgb(" + color1.r + "," + color1.g + "," + color1.b + ")";
+    this.ctx.fillText("Time: " + this.parseTime(this.time), -310, 220);
+
+    this.ctx.restore();
   }
 
-  parseTimer(time) {
+  parseTime(time) {
     let milliseconds = parseInt((time % 100)),
       seconds = parseInt((time / 100) % 60),
       minutes = parseInt((time / (100 * 60)) % 60);
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     seconds = (seconds < 10) ? "0" + seconds : seconds;
+    milliseconds = (milliseconds < 10) ? "0" + milliseconds : milliseconds;
 
     return (minutes > 0 ? minutes + ":" : "") + seconds + ":" + milliseconds;
   }

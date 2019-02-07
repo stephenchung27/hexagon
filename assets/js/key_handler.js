@@ -8,6 +8,9 @@ class KeyHandler {
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
+    
+    document.onkeydown = this.handleKeyPress;
+    document.onkeyup = this.handleKeyUp;
   }
 
   handleKeyPress(e) {

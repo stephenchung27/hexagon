@@ -1,4 +1,4 @@
-import { W, Xcenter, Ycenter } from './hexagon';
+import { W, color1, Xcenter, Ycenter } from './hexagon';
 
 class Wall {
   constructor(ctx, cursor, size, vtx) {
@@ -15,22 +15,24 @@ class Wall {
     const pos = this.position;
     const size = this.size;
     const vtx = this.vtx;
-    
+
     this.ctx.beginPath();
-    
+
     this.ctx.moveTo(Xcenter + pos * Math.cos((vtx) * 2 * Math.PI / 6),
-    Ycenter + pos * Math.sin((vtx) * 2 * Math.PI / 6));
+      Ycenter + pos * Math.sin((vtx) * 2 * Math.PI / 6));
     this.ctx.lineTo(Xcenter + pos * Math.cos((vtx + 1) * 2 * Math.PI / 6),
-    Ycenter + pos * Math.sin((vtx + 1) * 2 * Math.PI / 6));
+      Ycenter + pos * Math.sin((vtx + 1) * 2 * Math.PI / 6));
     this.ctx.lineTo(Xcenter + (pos - size) * Math.cos((vtx + 1) * 2 * Math.PI / 6),
-    Ycenter + (pos - size) * Math.sin((vtx + 1) * 2 * Math.PI / 6));
+      Ycenter + (pos - size) * Math.sin((vtx + 1) * 2 * Math.PI / 6));
     this.ctx.lineTo(Xcenter + (pos - size) * Math.cos((vtx) * 2 * Math.PI / 6),
-    Ycenter + (pos - size) * Math.sin((vtx) * 2 * Math.PI / 6));
+      Ycenter + (pos - size) * Math.sin((vtx) * 2 * Math.PI / 6));
     this.ctx.lineTo(Xcenter + pos * Math.cos((vtx) * 2 * Math.PI / 6),
-    Ycenter + pos * Math.sin((vtx) * 2 * Math.PI / 6));
-    
-    this.ctx.fillStyle = "#FFFFFF";
+      Ycenter + pos * Math.sin((vtx) * 2 * Math.PI / 6));
+
+    this.ctx.fillStyle = "rgb(" + color1.r + "," + color1.g + "," + color1.b + ")";
     this.ctx.fill();
+
+    this.ctx.closePath();
 
     this.converge(pos, size);
     this.checkCollision(pos - size);
@@ -38,17 +40,18 @@ class Wall {
 
   converge(pos, size) {
     if (pos >= -size) {
-      this.position -= 6;
+      this.position -= 5;
       if (pos < size) {
-        this.size -= 6;
+        this.size -= 5;
       }
     }
   }
 
   checkCollision(point) {
-    if ((Math.floor(this.cursor.rot) + 5) % 6 === this.vtx &&
-      point <= 30) {
-        alert(this.vtx);
+    // console.log((this.cursor.getSide() + 4) % 6);
+    if ((this.cursor.getSide() + 4) % 6 === this.vtx && point <= 40 && point > 0 - this.size / 2 + 15) {
+      console.log(this.vtx);
+      // alert("DEAD");
     }
   }
 }

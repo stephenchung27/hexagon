@@ -1,22 +1,23 @@
-import { Xcenter, Ycenter } from './hexagon';
+import { color1, mult, Xcenter, Ycenter } from './hexagon';
+import KeyHandler from './key_handler';
 
 class Cursor {
   constructor(ctx) {
     this.ctx = ctx;
-
-    // Mult - size multiplier for pusling
-    this.mult = 1;
 
     // Rot - degree rotation of the base
     this.rot = 0;
 
     // Vel - velocity and direction at which the arrow is moving
     this.vel = 0;
+
+    // Initialize keyhandler
+    new KeyHandler(this);
   }
 
   drawCursor() {
     // For pulsing - size multiplier
-    const size = this.mult * 40;
+    const size = mult * 40;
 
     // Rotation increases every frame based on current velocity
     this.rot += this.vel;
@@ -31,26 +32,31 @@ class Cursor {
     this.ctx.translate(Xcenter, Ycenter);
     this.ctx.rotate(this.rot);
 
-    const side = 12 * this.mult;
+    const side = 12 * mult;
     const height = side * (Math.sqrt(3) / 2);
 
     this.ctx.beginPath();
+
     this.ctx.moveTo(0, -height / 2 - size);
     this.ctx.lineTo(-side / 2, height / 2 - size);
     this.ctx.lineTo(side / 2, height / 2 - size);
     this.ctx.lineTo(0, -height / 2 - size);
 
-    this.ctx.fillStyle = "#FF0000";
+    this.ctx.fillStyle = "rgb(" + color1.r + "," + color1.g + "," + color1.b + ")";
     this.ctx.fill();
-
-    // this.ctx.translate(-Xcenter, -Ycenter);
-
+    
     this.ctx.restore();
+
+    this.ctx.closePath();
   }
 
   getSide() {
-    // this.ctx.fillText(Math.floor((this.rot % 6 + 6) % 6), 50, 100);
-    this.ctx.fillText(this.rot, 50, 100);
+    const result = Math.floor((this.rot + Math.PI / 6) / (2 * Math.PI / 6));
+    if (result < 0) {
+      return 6 - (Math.abs(result) % 6);
+    } else {
+      return result % 6;
+    }
   }
 
   moveCW() {
