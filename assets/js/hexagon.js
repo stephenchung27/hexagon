@@ -2,7 +2,7 @@ import Cursor from './cursor';
 import Plane from './plane';
 import Timer from './timer';
 import WallPattern from './wall_pattern';
-import { blendColors } from './color_handler';
+import { updateColors } from './color_handler';
 
 export const W = 640;
 export const H = 460;
@@ -32,17 +32,15 @@ window.requestAnimFrame = (function () {
 
 let balance = 0;
 
-const update = () => {
-  color1 = blendColors(255, 255, 0, 255, 0, 0, balance);
-  color2 = blendColors(106, 106, 0, 106, 0, 0, balance);
-  color3 = blendColors(81, 81, 0, 81, 0, 0, balance);
+const update = () => {  
+  [color1, color2, color3] = updateColors(balance);
 
   if (balance < 1) {
     balance += 0.015;
   } else {
     balance = 0;
   }
-
+  
   if (mult < 1.1) {
     mult += 0.005;
   } else {
