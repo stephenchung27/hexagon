@@ -1,6 +1,6 @@
 export const level1 = [
   {
-    "rot": 0,
+    "mult": 1,
     "walls": [
       {
         "size": 40,
@@ -30,7 +30,7 @@ export const level1 = [
     ]
   },
   {
-    "rot": 0,
+    "mult": 1,
     "walls": [
       {
         "size": 40,
@@ -50,7 +50,7 @@ export const level1 = [
     ]
   },
   {
-    "rot": 0,
+    "mult": 1,
     "walls": [
       {
         "size": 40,
@@ -68,7 +68,7 @@ export const level1 = [
 
 export const level2 = [
   {
-    "rot": 0,
+    "mult": 1,
     "walls": [
       {
         "size": 20,
@@ -148,7 +148,7 @@ export const level2 = [
     ]
   },
   {
-    "rot": 0,
+    "mult": 1,
     "walls": [
       {
         "size": 20,
@@ -228,7 +228,7 @@ export const level2 = [
     ]
   },
   {
-    "rot": 0,
+    "mult": 1,
     "walls": [
       {
         "size": 20,
@@ -308,7 +308,7 @@ export const level2 = [
     ]
   },
   {
-    "rot": 0,
+    "mult": 1,
     "walls": [
       {
         "size": 20,
@@ -391,7 +391,7 @@ export const level2 = [
 
 export const level3 = [
   {
-    "rot": 0,
+    "mult": 1,
     "walls": [
       {
         "size": 30,
@@ -451,7 +451,7 @@ export const level3 = [
     ]
   },
   {
-    "rot": 0,
+    "mult": 1,
     "walls": [
       {
         "size": 30,

@@ -60,11 +60,11 @@ class Cursor {
   }
 
   moveCW() {
-    this.vel = (2 * Math.PI) / 60;
+    this.vel = (2 * Math.PI) / 50;
   }
 
   moveCCW() {
-    this.vel = -((2 * Math.PI) / 60);
+    this.vel = -((2 * Math.PI) / 50);
   }
 
   stopMoving() {

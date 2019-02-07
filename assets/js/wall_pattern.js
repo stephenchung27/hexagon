@@ -1,5 +1,6 @@
 import Wall from './wall';
 import { level1, level2, level3 } from './levels';
+import { changeRotation } from './hexagon';
 
 class WallPattern {
   constructor(ctx, cursor, timer) {
@@ -15,8 +16,15 @@ class WallPattern {
     this.pickPattern = this.pickPattern.bind(this);
   }
 
+  drawWalls() {
+    this.walls.forEach((wall) => {
+      wall.drawWall();
+    });
+  }
+
   pickPattern() {
     const wallSet = this.patterns[Math.floor(Math.random() * this.patterns.length)];
+
 
     // Need offset to get next pattern after previous pattern finishes
     let offsetTotal = 0;
@@ -43,6 +51,7 @@ class WallPattern {
     // Delete walls after they reach the center
     setTimeout(() => {
       this.walls = this.walls.slice(wallSet.walls.length);
+      this.newRotation();
     }, 2300 + offsetTotal);
 
     // Checks level and adds necessary patterns
@@ -50,12 +59,27 @@ class WallPattern {
   }
 
   checkLevel() {
-    if (this.timer.time >= 50 && this.level < 2) {
+    if (this.timer.time >= 100 && this.level < 2) {
       this.patterns = this.patterns.concat(level2);
       this.level++;
-    } else if (this.timer.time >= 100 && this.level < 3) {
+    } else if (this.timer.time >= 200 && this.level < 3) {
       this.patterns = this.patterns.concat(level3);
       this.level++;
+    }
+  }
+
+  newRotation() {
+    const random = Math.floor(Math.random() * 6);
+    switch(random) {
+      case 0:
+        changeRotation(-1);
+        break;
+      case 1:
+        changeRotation(1.1);
+        break;
+      case 2:
+        changeRotation(0.9);
+        break;
     }
   }
 }

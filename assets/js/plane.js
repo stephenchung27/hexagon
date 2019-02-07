@@ -4,8 +4,6 @@ class Plane {
   constructor(ctx) {
     this.ctx = ctx;
 
-    // this.drawBase = this.drawBase.bind(this);
-    this.multRotation = this.multRotation.bind(this);
   }
 
   drawBase() {

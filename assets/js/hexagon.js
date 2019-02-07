@@ -12,8 +12,13 @@ export const Ycenter = H / 2;
 
 export let color1, color2, color3;
 export let mult = 1;
-export let rot = (2 * Math.PI) / 1440;
+export let rot = (2 * Math.PI) / 500;
 
+export const changeRotation = (multiplier) => {
+  rot = rot * multiplier;
+}
+
+// Console based animation function thats smoothes frames
 window.requestAnimFrame = (function () {
   return window.requestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
@@ -27,11 +32,31 @@ window.requestAnimFrame = (function () {
 
 let balance = 0;
 
+const update = () => {
+  color1 = blendColors(255, 255, 0, 255, 0, 0, balance);
+  color2 = blendColors(106, 106, 0, 106, 0, 0, balance);
+  color3 = blendColors(81, 81, 0, 81, 0, 0, balance);
+
+  if (balance < 1) {
+    balance += 0.015;
+  } else {
+    balance = 0;
+  }
+
+  if (mult < 1.1) {
+    mult += 0.005;
+  } else {
+    mult = 1;
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById("canvas");
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext("2d" );
+
   ctx.imageSmoothingEnabled = false;
 
+  // Canvas parameters
   canvas.width = W;
   canvas.height = H;
   canvas.style.width = W;
@@ -46,34 +71,15 @@ document.addEventListener('DOMContentLoaded', () => {
   
   wallPattern.pickPattern();
 
+  // Animating
   const animate = () => {
-    color1 = blendColors(255, 255, 0, 255, 0, 0, balance);
-    color2 = blendColors(106, 106, 0, 106, 0, 0, balance);
-    color3 = blendColors(81, 81, 0, 81, 0, 0, balance);
+    update();
 
     plane.drawBackground();
-    
-    wallPattern.walls.forEach((wall) => {
-      wall.drawWall();
-    });
-
-    // rot = wallPattern..
-
+    wallPattern.drawWalls();
     plane.drawBase();
     timer.renderTime();
     cursor.drawCursor();
-
-    if (balance < 1) {
-      balance += 0.015;
-    } else {
-      balance = 0;
-    }
-
-    if (mult < 1.1) {
-      mult += 0.005;
-    } else {
-      mult = 1;
-    }
 
     requestAnimFrame(animate);
   }

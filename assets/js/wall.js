@@ -40,9 +40,9 @@ class Wall {
 
   converge(pos, size) {
     if (pos >= -size) {
-      this.position -= 5;
+      this.position -= 5.5;
       if (pos < size) {
-        this.size -= 5;
+        this.size -= 5.5;
       }
     }
   }
