@@ -34,9 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const plane = new Plane(ctx);
   const keyHandler = new KeyHandler(cursor);
   const timer = new Timer(ctx);
-  const wall1 = new Wall(ctx, 80, 1);
-  const wall2 = new Wall(ctx, 40, 2);
-  const wall3 = new Wall(ctx, 80, 3);
+  const wall1 = new Wall(ctx, cursor, 80, 1);
+  const wall2 = new Wall(ctx, cursor, 40, 4);
+  const wall3 = new Wall(ctx, cursor, 80, 2);
 
   document.onkeydown = keyHandler.handleKeyPress;
   document.onkeyup = keyHandler.handleKeyUp;

@@ -43,7 +43,8 @@ class Cursor {
     this.ctx.fillStyle = "#FF0000";
     this.ctx.fill();
 
-    this.ctx.translate(-Xcenter, -Ycenter);
+    // this.ctx.translate(-Xcenter, -Ycenter);
+
     this.ctx.restore();
   }
 
