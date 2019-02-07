@@ -1,8 +1,9 @@
-import { Xcenter, Ycenter } from './game';
-
+import { Xcenter, Ycenter } from './hexagon';
 
 class Cursor {
-  constructor() {    
+  constructor(ctx) {
+    this.ctx = ctx;
+
     // Mult - size multiplier for pusling
     this.mult = 1;
 
@@ -13,9 +14,9 @@ class Cursor {
     this.vel = 0;
   }
 
-  drawCursor(ctx) {
+  drawCursor() {
     // For pulsing - size multiplier
-    const size = this.mult * 42;
+    const size = this.mult * 40;
 
     // Rotation increases every frame based on current velocity
     this.rot += this.vel;
@@ -23,35 +24,40 @@ class Cursor {
     // It is important to draw the cursor at the very end because the cursor
     // has its own relative rotations
 
-    ctx.save();
+    this.ctx.save();
     // Save is required to preserve the rotation of the plane relative
     // to the cursor
 
-    ctx.translate(Xcenter, Ycenter);
-    ctx.rotate(this.rot);
+    this.ctx.translate(Xcenter, Ycenter);
+    this.ctx.rotate(this.rot);
 
     const side = 12 * this.mult;
     const height = side * (Math.sqrt(3) / 2);
 
-    ctx.beginPath();
-    ctx.moveTo(0, -height / 2 - size);
-    ctx.lineTo(-side / 2, height / 2 - size);
-    ctx.lineTo(side / 2, height / 2 - size);
-    ctx.lineTo(0, -height / 2 - size);
+    this.ctx.beginPath();
+    this.ctx.moveTo(0, -height / 2 - size);
+    this.ctx.lineTo(-side / 2, height / 2 - size);
+    this.ctx.lineTo(side / 2, height / 2 - size);
+    this.ctx.lineTo(0, -height / 2 - size);
 
-    ctx.fillStyle = "#FF0000";
-    ctx.fill();
+    this.ctx.fillStyle = "#FF0000";
+    this.ctx.fill();
 
-    ctx.translate(-Xcenter, -Ycenter);
-    ctx.restore();
+    this.ctx.translate(-Xcenter, -Ycenter);
+    this.ctx.restore();
+  }
+
+  getSide() {
+    // this.ctx.fillText(Math.floor((this.rot % 6 + 6) % 6), 50, 100);
+    this.ctx.fillText(this.rot, 50, 100);
   }
 
   moveCW() {
-    this.vel = (2 * Math.PI) / 180;
+    this.vel = (2 * Math.PI) / 60;
   }
 
   moveCCW() {
-    this.vel = -((2 * Math.PI) / 180);
+    this.vel = -((2 * Math.PI) / 60);
   }
 
   stopMoving() {

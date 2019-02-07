@@ -1,27 +1,67 @@
-import { H, Xcenter, Ycenter } from './game';
+import Cursor from './cursor';
+import Plane from './plane';
+import KeyHandler from './key_handler';
+import Wall from './wall';
+import Timer from './timer';
 
-class Hexagon {
-  constructor() {
-    this.size = H;
+// export const W = window.innerWidth;
+// export const H = window.innerHeight;
 
-    this.drawHexagon = this.drawHexagon.bind(this);
+export const W = 640;
+export const H = 460;
+
+export const Xcenter = W / 2;
+export const Ycenter = H / 2;
+window.requestAnimFrame = (function () {
+  return window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.oRequestAnimationFrame ||
+    window.msRequestAnimationFrame ||
+    function (callback) {
+      window.setTimeout(callback, 1000 / 60);
+    };
+})();
+
+document.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = W;
+  canvas.height = H;
+
+  const cursor = new Cursor(ctx);
+  const plane = new Plane(ctx);
+  const keyHandler = new KeyHandler(cursor);
+  const timer = new Timer(ctx);
+  const wall1 = new Wall(ctx, 80, 1);
+  const wall2 = new Wall(ctx, 40, 2);
+  const wall3 = new Wall(ctx, 80, 3);
+
+  document.onkeydown = keyHandler.handleKeyPress;
+  document.onkeyup = keyHandler.handleKeyUp;
+
+  timer.turnOn();
+
+  const animate = () => {
+    ctx.clearRect(0, 0, W, H);
+    
+    ctx.save();
+    plane.drawBackground();
+    
+    wall1.drawWall(ctx);
+    wall2.drawWall(ctx);
+    wall3.drawWall(ctx);
+    
+    plane.drawBase();
+    cursor.drawCursor();
+    ctx.restore();
+    cursor.getSide();
+    timer.renderTime();
+
+
+    requestAnimFrame(animate);
   }
 
-  drawHexagon(ctx) {
-    this.size -= 1;
-
-    ctx.beginPath();
-    ctx.moveTo(Xcenter + this.size * Math.cos(0), Ycenter + this.size * Math.sin(0));
-
-    for (let i = 0; i <= 6; i++) {
-      ctx.lineTo(Xcenter + this.size * Math.cos(i * 2 * Math.PI / 6),
-        Ycenter + this.size * Math.sin(i * 2 * Math.PI / 6));
-    }
-
-    ctx.strokeStyle = "#FFFFFF";
-    ctx.lineWidth = 20;
-    ctx.stroke();
-  }
-}
-
-export default Hexagon;
+  animate();
+});
