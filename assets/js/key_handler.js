@@ -1,4 +1,4 @@
-import { playing, togglePlaying } from './hexagon';
+import { status, togglePlaying } from './hexagon';
 
 const KEYCODE_LEFT = 37,
   KEYCODE_RIGHT = 39,
@@ -17,21 +17,25 @@ class KeyHandler {
 
   handleKeyPress(e) {
     e.preventDefault();
-    if (playing) {
-      switch (e.keyCode) {
-        case KEYCODE_LEFT:
-          this.cursor.moveCCW();
-          break;
-        case KEYCODE_RIGHT:
-          this.cursor.moveCW();
-          break;
-      }
-    } else {
-      switch(e.keyCode) {
-        case KEYCODE_SPACE:
-          togglePlaying();
-          break;
-      }
+    switch (status) {
+      case 0:
+        switch (e.keyCode) {
+          case KEYCODE_SPACE:
+            togglePlaying();
+            break;
+        }
+      break;
+      case 1:
+      case 2:
+        switch (e.keyCode) {
+          case KEYCODE_LEFT:
+            this.cursor.moveCCW();
+            break;
+          case KEYCODE_RIGHT:
+            this.cursor.moveCW();
+            break;
+        }
+        break;
     }
   }
 

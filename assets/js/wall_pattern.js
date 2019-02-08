@@ -1,6 +1,6 @@
 import Wall from './wall';
 import { level1, level2, level3 } from './levels';
-import { changeRotation, playing } from './hexagon';
+import { changeRotation } from './hexagon';
 
 class WallPattern {
   constructor(ctx, cursor, timer) {
@@ -22,10 +22,13 @@ class WallPattern {
     });
   }
 
-  resetWalls() {
+  clearTimeouts() {
     this.timeouts.forEach(timeout => {
       clearTimeout(timeout);
     });
+  }
+
+  resetWalls() {
     this.level = 1;
     this.walls = [];
     this.patterns = level1.concat(level1).concat(level1);

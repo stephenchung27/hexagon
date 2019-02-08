@@ -1,4 +1,4 @@
-import { playing, mult, Xcenter, Ycenter } from './hexagon';
+import { status, mult, Xcenter, Ycenter } from './hexagon';
 import { color1 } from './color_handler';
 import KeyHandler from './key_handler';
 
@@ -57,7 +57,7 @@ class Cursor {
   }
 
   pulse(side, dist) {
-    if (!playing) {
+    if (status === 0 || status === 3 || status === 4) {
       const pulseSide = side + this.pulseVal;
       const pulseHeight = pulseSide * (Math.sqrt(3) / 2);
       const pulseDist = dist + Math.PI * 2 * this.pulseVal / 40;

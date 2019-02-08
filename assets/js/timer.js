@@ -8,7 +8,7 @@ class Timer {
     this.rotation = 0;
 
     this.time = 0;
-    this.playing = false;
+    this.isTimerOn = false;
 
     this.interval = null;
 
@@ -24,15 +24,15 @@ class Timer {
   }
 
   turnOff() {
-    this.playing = false;
+    this.isTimerOn = false;
   }
 
   tickTimer() {
-    if (this.playing) this.time += 1;
+    if (this.isTimerOn) this.time += 1;
   }
 
   resetTimer() {
-    this.playing = true;
+    // this.isTimerOn = true;
     this.time = 0;
   }
 

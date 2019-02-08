@@ -1,4 +1,4 @@
-import { W, Xcenter, Ycenter, togglePlaying } from './hexagon';
+import { W, Xcenter, Ycenter, togglePlaying, status } from './hexagon';
 import { color1 } from './color_handler';
 
 class Wall {
@@ -35,21 +35,29 @@ class Wall {
 
     this.ctx.closePath();
 
-    this.converge(pos, size);
     this.checkCollision(pos - size);
+
+    if (status === 2) this.converge();
+    if (status === 4) this.diverge();
   }
 
-  converge(pos, size) {
-    if (pos >= -size) {
+  converge() {
+    if (this.position >= -this.size) {
       this.position -= 5.5;
-      if (pos < size) {
+      if (this.position < this.size) {
         this.size -= 5.5;
       }
     }
   }
 
+  diverge() {
+    if (this.position >= -this.size) {
+      this.position += 20;
+    }
+  }
+
   checkCollision(point) {
-    if ((this.cursor.getSide() + 4) % 6 === this.vtx && point <= 40 && point > 0 - this.size / 2 + 15) {
+    if ((this.cursor.getSide() + 4) % 6 === this.vtx && point <= 40 && point > 0 - this.size / 2 + 15 && status == 2) {
       togglePlaying();
     }
   }
