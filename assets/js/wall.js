@@ -49,9 +49,7 @@ class Wall {
   }
 
   checkCollision(point) {
-    // console.log((this.cursor.getSide() + 4) % 6);
     if ((this.cursor.getSide() + 4) % 6 === this.vtx && point <= 40 && point > 0 - this.size / 2 + 15) {
-      console.log("COLLISION");
       togglePlaying();
     }
   }

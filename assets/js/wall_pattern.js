@@ -29,9 +29,6 @@ class WallPattern {
     this.level = 1;
     this.walls = [];
     this.patterns = level1.concat(level1).concat(level1);
-
-    console.log(this.patterns);
-    console.log(this.timer.time);
   }
 
   pickPattern() {
@@ -42,6 +39,8 @@ class WallPattern {
 
     // Start first walls from random vertex
     const vtxOffset = Math.floor(Math.random() * 6);
+
+    console.log(this.patterns);
 
     wallSet.walls.forEach(wall => {
       if (offsetTotal < wall.offset) {
@@ -63,7 +62,6 @@ class WallPattern {
     this.timeouts.push(setTimeout(() => {
       this.walls = this.walls.slice(wallSet.walls.length);
       this.newRotation();
-      console.log(this.walls);
     }, 2000 + offsetTotal));
 
     // Checks level and adds necessary patterns
@@ -81,16 +79,22 @@ class WallPattern {
   }
 
   newRotation() {
-    const random = Math.floor(Math.random() * 6);
+    const random = Math.floor(Math.random() * 12);
     switch (random) {
       case 0:
         changeRotation(-1);
         break;
       case 1:
-        changeRotation(1.2);
+        changeRotation(1.1);
         break;
       case 2:
-        changeRotation(0.8);
+        changeRotation(0.9);
+        break;
+      case 3:
+        changeRotation(1.2);
+        break;
+      case 4:
+        changeRotation(0.80);
         break;
     }
   }

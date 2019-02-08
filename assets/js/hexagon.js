@@ -12,15 +12,24 @@ export const Ycenter = H / 2;
 
 // Exported "live-updating" values (global state)
 export let mult = 1;
-export let rot = (2 * Math.PI) / 500;
+export let rot = (2 * Math.PI) / 600;
 export let totalRotation = 0;
 export let togglePlaying; // Initializing to define it later in animate function
 
 // Boolean to start the game
 export let playing = false;
+export let status = 0;
+
+// 0: default
+// 1: starting
+// 2: playing
+// 3: collision
+// 4: ending
 
 export const changeRotation = (multiplier) => {
-  rot = rot * multiplier;
+  if (rot <= (2 * Math.PI) / 200) {
+    rot = rot * multiplier;
+  }
 }
 
 export const addToTotalRotation = (rot) => {
@@ -79,15 +88,14 @@ document.addEventListener('DOMContentLoaded', () => {
       // Resets rotation of ctx so that they render at the same place every
       // time
       startingScreen.resetRotation();
-      timer.resetRotation();
-
       wallPattern.resetWalls();
-      console.log(wallPattern.walls)
+      cursor.vel = 0;
       
       timer.turnOff();
       playing = false;
     } else {
       // Start Game
+      timer.resetRotation();
       wallPattern.pickPattern();
       timer.resetTimer();
       timer.turnOn();
