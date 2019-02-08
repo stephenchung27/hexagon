@@ -19,6 +19,7 @@ class Timer {
 
   turnOn() {
     this.resetTimer();
+    this.isTimerOn = true;
     clearInterval(this.interval);
     this.interval = setInterval(this.tickTimer, 10);
   }
@@ -61,10 +62,10 @@ class Timer {
     this.ctx.restore();
   }
 
-  parseTime() {
-    let milliseconds = parseInt(this.time % 100),
-      seconds = parseInt((this.time / 100) % 60),
-      minutes = parseInt((this.time / (100 * 60)) % 60);
+  parseTime(time = this.time) {
+    let milliseconds = parseInt(time % 100),
+      seconds = parseInt((time / 100) % 60),
+      minutes = parseInt((time / (100 * 60)) % 60);
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     seconds = (seconds < 10) ? "0" + seconds : seconds;
     milliseconds = (milliseconds < 10) ? "0" + milliseconds : milliseconds;

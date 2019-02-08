@@ -43,8 +43,6 @@ class WallPattern {
     // Start first walls from random vertex
     const vtxOffset = Math.floor(Math.random() * 6);
 
-    console.log(this.patterns);
-
     wallSet.walls.forEach(wall => {
       if (offsetTotal < wall.offset) {
         offsetTotal = wall.offset;

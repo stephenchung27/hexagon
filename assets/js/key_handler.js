@@ -16,27 +16,30 @@ class KeyHandler {
   }
 
   handleKeyPress(e) {
-    e.preventDefault();
-    switch (status) {
-      case 0:
-        switch (e.keyCode) {
-          case KEYCODE_SPACE:
-            togglePlaying();
-            break;
-        }
-      break;
-      case 1:
-      case 2:
-        switch (e.keyCode) {
-          case KEYCODE_LEFT:
-            this.cursor.moveCCW();
-            break;
-          case KEYCODE_RIGHT:
-            this.cursor.moveCW();
-            break;
-        }
+    if (e.target.id !== "name-input") {
+      e.preventDefault();
+      switch (status) {
+        case 0:
+          switch (e.keyCode) {
+            case KEYCODE_SPACE:
+              
+              togglePlaying();
+              break;
+          }
         break;
-    }
+        case 1:
+        case 2:
+          switch (e.keyCode) {
+            case KEYCODE_LEFT:
+              this.cursor.moveCCW();
+              break;
+            case KEYCODE_RIGHT:
+              this.cursor.moveCW();
+              break;
+          }
+          break;
+      }
+    };
   }
 
   handleKeyUp(e) {

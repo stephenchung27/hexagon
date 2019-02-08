@@ -14,3 +14,22 @@ body {
 canvas {
   margin: 100px auto;
 }
+
+#name-input {
+  font-family: "Acknowledge";
+  position: absolute;
+  top: 320px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: #C4C4C4;
+  font-size: 24px;
+  text-align: center;
+  caret-color: #FFFFFF;
+}
+
+.hidden {
+  visibility: hidden;
+}

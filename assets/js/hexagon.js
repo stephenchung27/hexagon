@@ -4,6 +4,7 @@ import Timer from './timer';
 import WallPattern from './wall_pattern';
 import { updateColors, setToStartingColors } from './color_handler';
 import StartingScreen from './starting_screen';
+import { addHighscore } from './highscore_handler';
 
 export const W = 640;
 export const H = 460;
@@ -17,14 +18,7 @@ export let totalRotation = 0;
 export let togglePlaying; // Initializing to define it later in animate function
 
 // Boolean to start the game
-export let playing = false;
 export let status = 0;
-
-// 0: default
-// 1: starting
-// 2: playing
-// 3: collision
-// 4: ending
 
 export const changeRotation = (multiplier) => {
   if (rot <= (2 * Math.PI) / 200) {
@@ -51,6 +45,7 @@ window.requestAnimFrame = (function () {
 
 let balance = 0;
 let flash = false;
+let flashCounter = 0;
 
 const update = () => {
   updateColors(balance);
@@ -81,13 +76,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const wallPattern = new WallPattern(ctx, cursor, timer);
   const startingScreen = new StartingScreen(ctx);
 
-  setToStartingColors();
+  const highscoreForm = document.getElementById("name-form");
+  const nameInput = document.getElementById("name-input");
 
+  highscoreForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    addHighscore(nameInput.value, timer.time);
+    nameInput.value = "";
+    nameInput.disabled = true;
+    nameInput.placeholder = "Highscore submitted";
+    startingScreen.getScores();
+  });
+
+  setToStartingColors();
+  startingScreen.getScores();
+  
   togglePlaying = () => {
     switch (status) {
       case 0:
         // Start Game
         mult = 10.5;
+        nameInput.classList.add("hidden");
         wallPattern.resetWalls();
         timer.resetRotation();
         timer.resetTimer();
@@ -101,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
       case 2: // Collision
         wallPattern.clearTimeouts();
         flash = true;
+        flashCounter = 0;
 
         cursor.vel = 0; // Stop cursor from moving
 
@@ -115,6 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
       case 4:
         startingScreen.resetRotation();
         status = 0;
+        nameInput.classList.remove("hidden");
+        nameInput.focus();
         break;
     }
   };
@@ -167,7 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.fillRect(0, 0, W, H);
           ctx.restore();
 
-          flash = false;
+          flashCounter += 1;
+          if (flashCounter > 4) flash = false;
         }
         break;
       case 4:
@@ -175,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
         wallPattern.drawWalls();
         plane.drawBase();
         cursor.drawCursor();
+        startingScreen.getScores();
 
         if (mult >= 10.5) {
           togglePlaying();
