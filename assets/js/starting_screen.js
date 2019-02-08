@@ -72,19 +72,19 @@ class StartingScreen {
     this.ctx.font = "24px Acknowledge"
     this.ctx.textAlign = "left";
     this.ctx.fillStyle = "#FF0000";
-    this.ctx.fillText("00:00 ", 125, -50);
+    this.ctx.fillText(timer.parseTime(localStorage.getItem('bestScore')) || "00:00", 125, -50);
 
     // Highscores
     this.ctx.font = "24px Acknowledge"
     this.ctx.textAlign = "center";
     this.ctx.fillStyle = "#FF0000";
-    this.ctx.fillText("Highscores", 0, 35);
+    this.ctx.fillText("Highscores", 0, 10);
 
     if (!Object.keys(this.highscores).length) {
       this.ctx.font = "24px Acknowledge"
       this.ctx.textAlign = "center";
       this.ctx.fillStyle = "#FFFF00";
-      this.ctx.fillText("Loading...", 0, 60);
+      this.ctx.fillText("Loading...", 0, 35);
     }
 
     Object.values(this.highscores).forEach((entry, index) => {
@@ -92,13 +92,13 @@ class StartingScreen {
       this.ctx.textAlign = "left";
       this.ctx.fillStyle = "rgba(255, 255, 0, " +
         (index <= 5 ? 1 : 0.20 * (10 - index)) + ")";
-      this.ctx.fillText(entry.name, -100, 60 + index * 15);
+      this.ctx.fillText(entry.name, -100, 30 + index * 17);
 
       this.ctx.font = "24px Acknowledge"
       this.ctx.textAlign = "right";
       this.ctx.fillStyle = "rgba(196, 196, 196, " + 
         (index <= 5 ? 1 : 0.20 * (10 - index)) + ")";
-      this.ctx.fillText(timer.parseTime(entry.time), 100, 60 + index * 15);
+      this.ctx.fillText(timer.parseTime(entry.time), 100, 30 + index * 17);
     })
 
     // this.ctx.font = "24px Acknowledge"

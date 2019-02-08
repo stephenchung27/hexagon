@@ -81,11 +81,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   highscoreForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    if (nameInput.value !== "") {
     addHighscore(nameInput.value, timer.time);
     nameInput.value = "";
     nameInput.disabled = true;
     nameInput.placeholder = "Highscore submitted";
     startingScreen.getScores();
+    }
   });
 
   setToStartingColors();
@@ -126,7 +128,15 @@ document.addEventListener('DOMContentLoaded', () => {
         startingScreen.resetRotation();
         status = 0;
         nameInput.classList.remove("hidden");
+        nameInput.value = "";
+        nameInput.disabled = false;
+        nameInput.placeholder = "Enter your Name";
         nameInput.focus();
+
+        if (localStorage.getItem('bestScore') < timer.time) {
+          localStorage.setItem('bestScore', timer.time);
+        }
+        
         break;
     }
   };

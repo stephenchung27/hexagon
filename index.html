@@ -5,26 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./assets/css/main.css">
-  <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBvZHrRQMR2japi6ODVBqNYW_rUJyFyaCk",
-    authDomain: "hexagon-highscores.firebaseapp.com",
-    databaseURL: "https://hexagon-highscores.firebaseio.com",
-    projectId: "hexagon-highscores",
-    storageBucket: "",
-    messagingSenderId: "91272525021"
-  };
-  firebase.initializeApp(config);
-</script>
   <script src="./dist/bundle.js"></script>
   <title>Hexagon</title>
 </head>
 <body>
   <canvas id="canvas" width="640" height="460"></canvas>
-  <form id="name-form">
+  <form id="name-form" autocomplete="off">
     <input id="name-input" type="text" class="hidden" placeholder="Enter your Name" />
   </form>
+  <h3>Learn more about the creator:</h3>
+  <ul id="links">
+    <li><img src="./assets/images/Github.png" id="github" alt="Github" /></li>
+    <li><img src="./assets/images/LinkedIn.png" id="linkedin" alt="LinkedIn" /></li>
+  </ul>
 </body>
 </html>

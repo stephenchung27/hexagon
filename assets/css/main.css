@@ -9,22 +9,22 @@ body {
   overflow: hidden;
   background-color: #000;
   text-align: center;
+  font-family: "Acknowledge";
+  color: #C4C4C4;
 }
 
 canvas {
-  margin: 100px auto;
+  margin: 100px auto 0px;
 }
 
 #name-input {
-  font-family: "Acknowledge";
   position: absolute;
-  top: 320px;
+  top: 292px;
   left: 50%;
   transform: translateX(-50%);
   background-color: transparent;
   outline: none;
   border: none;
-  color: #C4C4C4;
   font-size: 24px;
   text-align: center;
   caret-color: #FFFFFF;
@@ -32,4 +32,36 @@ canvas {
 
 .hidden {
   visibility: hidden;
+}
+
+h3 {
+  font-size: 30px;
+}
+
+#links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#links img {
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+
+#links img:hover {
+  transform: scale(1.2);
+}
+
+#github {
+  height: 52px;
+  margin-right: 40px;
+}
+
+#linkedin {
+  height: 25px;
 }
