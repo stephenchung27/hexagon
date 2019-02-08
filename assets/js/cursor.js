@@ -42,7 +42,7 @@ class Cursor {
     this.ctx.lineTo(side / 2, height / 2 - size);
     this.ctx.lineTo(0, -height / 2 - size);
 
-    this.ctx.fillStyle = "rgb(" + color1.r + "," + color1.g + "," + color1.b + ")";
+    this.ctx.fillStyle = color1;
     this.ctx.fill();
     
     this.ctx.restore();

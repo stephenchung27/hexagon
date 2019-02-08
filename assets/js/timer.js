@@ -47,7 +47,7 @@ class Timer {
     
     this.ctx.font = "20px Acknowledge";
     this.ctx.textAlign = "left";
-    this.ctx.fillStyle = "rgb(" + color1.r + "," + color1.g + "," + color1.b + ")";
+    this.ctx.fillStyle = color1;
     this.ctx.fillText("Time: " + this.parseTime(this.time), -310, 220);
 
     this.ctx.restore();

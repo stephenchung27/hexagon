@@ -29,7 +29,7 @@ class Plane {
     this.ctx.fillStyle = "#000000";
     this.ctx.fill();
 
-    this.ctx.strokeStyle = "rgb(" + color1.r + "," + color1.g + "," + color1.b + ")";
+    this.ctx.strokeStyle = color1;
     this.ctx.lineWidth = 5;
     this.ctx.stroke();
 
@@ -49,8 +49,8 @@ class Plane {
       this.ctx.lineTo(Xcenter, Ycenter);
 
       this.ctx.fillStyle = (i % 2 === 0) ?
-        "rgb(" + color2.r + "," + color2.g + "," + color2.b + ")" :
-        "rgb(" + color3.r + "," + color3.g + "," + color3.b + ")";
+        color2 :
+        color3;
       this.ctx.fill();
 
       this.ctx.closePath();

@@ -29,7 +29,7 @@ class Wall {
     this.ctx.lineTo(Xcenter + pos * Math.cos((vtx) * 2 * Math.PI / 6),
       Ycenter + pos * Math.sin((vtx) * 2 * Math.PI / 6));
 
-    this.ctx.fillStyle = "rgb(" + color1.r + "," + color1.g + "," + color1.b + ")";
+    this.ctx.fillStyle = color1;
     this.ctx.fill();
 
     this.ctx.closePath();
