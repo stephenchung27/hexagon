@@ -1,9 +1,9 @@
-import { W, color1, color2, color3, mult, rot, Xcenter, Ycenter } from './hexagon';
+import { W, mult, rot, Xcenter, Ycenter, addToTotalRotation } from './hexagon';
+import { color1, color2, color3 } from './color_handler';
 
 class Plane {
   constructor(ctx) {
     this.ctx = ctx;
-
   }
 
   drawBase() {
@@ -14,6 +14,7 @@ class Plane {
 
     this.ctx.translate(Xcenter, Ycenter);
     this.ctx.rotate(rot);
+    addToTotalRotation(rot);
     this.ctx.translate(-Xcenter, -Ycenter);
 
     this.ctx.moveTo(Xcenter + size * Math.cos(0), Ycenter + size * Math.sin(0));

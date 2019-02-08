@@ -1,4 +1,5 @@
-import { color1, mult, Xcenter, Ycenter } from './hexagon';
+import { playing, mult, Xcenter, Ycenter } from './hexagon';
+import { color1 } from './color_handler';
 import KeyHandler from './key_handler';
 
 class Cursor {
@@ -10,14 +11,17 @@ class Cursor {
 
     // Vel - velocity and direction at which the arrow is moving
     this.vel = 0;
-
+    this.pulseVal = 1;
     // Initialize keyhandler
     new KeyHandler(this);
+
+    this.pulse = this.pulse.bind(this);
   }
 
   drawCursor() {
-    // For pulsing - size multiplier
-    const size = mult * 40;
+    // For pulsing - dist multiplier
+    // const dist = mult * 40 ;
+    const dist = mult * 30 + 9 + mult;
 
     // Rotation increases every frame based on current velocity
     this.rot += this.vel;
@@ -32,22 +36,44 @@ class Cursor {
     this.ctx.translate(Xcenter, Ycenter);
     this.ctx.rotate(this.rot);
 
-    const side = 12 * mult;
+    const side = 12;
     const height = side * (Math.sqrt(3) / 2);
 
     this.ctx.beginPath();
 
-    this.ctx.moveTo(0, -height / 2 - size);
-    this.ctx.lineTo(-side / 2, height / 2 - size);
-    this.ctx.lineTo(side / 2, height / 2 - size);
-    this.ctx.lineTo(0, -height / 2 - size);
+    this.ctx.moveTo(0, -height / 2 - dist);
+    this.ctx.lineTo(-side / 2, height / 2 - dist);
+    this.ctx.lineTo(side / 2, height / 2 - dist);
+    this.ctx.lineTo(0, -height / 2 - dist);
 
     this.ctx.fillStyle = color1;
     this.ctx.fill();
-    
+
+    this.pulse(side, dist);
+
     this.ctx.restore();
 
     this.ctx.closePath();
+  }
+
+  pulse(side, dist) {
+    if (!playing) {
+      const pulseSide = side + this.pulseVal;
+      const pulseHeight = pulseSide * (Math.sqrt(3) / 2);
+      const pulseDist = dist + Math.PI * 2 * this.pulseVal / 40;
+
+      this.ctx.moveTo(0, -pulseHeight / 2 - pulseDist);
+      this.ctx.lineTo(-pulseSide / 2, pulseHeight / 2 - pulseDist);
+      this.ctx.lineTo(pulseSide / 2, pulseHeight / 2 - pulseDist);
+      this.ctx.lineTo(0, -pulseHeight / 2 - pulseDist);
+
+      this.ctx.strokeFill = color1;
+      this.ctx.lineWidth = 2;
+      this.ctx.stroke();
+
+      this.pulseVal += 3;
+      if (this.pulseVal > 40) this.pulseVal = 1;
+    }
   }
 
   getSide() {

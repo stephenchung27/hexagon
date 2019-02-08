@@ -1,4 +1,5 @@
-import { W, color1, Xcenter, Ycenter } from './hexagon';
+import { W, Xcenter, Ycenter, togglePlaying } from './hexagon';
+import { color1 } from './color_handler';
 
 class Wall {
   constructor(ctx, cursor, size, vtx) {
@@ -50,8 +51,8 @@ class Wall {
   checkCollision(point) {
     // console.log((this.cursor.getSide() + 4) % 6);
     if ((this.cursor.getSide() + 4) % 6 === this.vtx && point <= 40 && point > 0 - this.size / 2 + 15) {
-      console.log(this.vtx);
-      // alert("DEAD");
+      console.log("COLLISION");
+      togglePlaying();
     }
   }
 }
