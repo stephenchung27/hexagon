@@ -22,6 +22,8 @@ canvas {
   top: 292px;
   left: 50%;
   transform: translateX(-50%);
+  font-family: "Acknowledge";
+  color: #fff;
   background-color: transparent;
   outline: none;
   border: none;

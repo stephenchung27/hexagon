@@ -79,6 +79,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const highscoreForm = document.getElementById("name-form");
   const nameInput = document.getElementById("name-input");
 
+  nameInput.addEventListener("input", () => {
+    if (nameInput.value.match(/\s|\./g)) {
+      // alert('Username Cannot Have Spaces or Full Stops');
+      nameInput.value = nameInput.value.replace(/\s/g, '');
+    }
+  })
+
   highscoreForm.addEventListener("submit", (e) => {
     e.preventDefault();
     if (nameInput.value !== "") {
