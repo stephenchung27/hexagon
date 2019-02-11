@@ -10,6 +10,7 @@ class StartingScreen {
 
     this.rotation = 0;
     this.highscores = [];
+    this.loaded = false;
 
     this.correctRotation = true;
   }
@@ -21,6 +22,7 @@ class StartingScreen {
         this.highscores[doc.id] = doc.data();
       });
     });
+    this.loaded = true;
   }
 
   renderStartingScreen(timer) {
@@ -40,7 +42,7 @@ class StartingScreen {
     this.ctx.font = "20px Acknowledge";
     this.ctx.textAlign = "center";
     this.ctx.fillStyle = "#FFFF00";
-    this.ctx.fillText("created by Stephen Chung", 0, -150);
+    this.ctx.fillText("CREATED BY STEPHEN CHUNG", 0, -150);
 
     this.ctx.font = "96px Acknowledge";
     this.ctx.textAlign = "center";
@@ -78,13 +80,18 @@ class StartingScreen {
     this.ctx.font = "24px Acknowledge"
     this.ctx.textAlign = "center";
     this.ctx.fillStyle = "#FF0000";
-    this.ctx.fillText("Highscores", 0, 10);
+    this.ctx.fillText("HIGHSCORES", 0, 10);
 
-    if (!Object.keys(this.highscores).length) {
+    if (!this.loaded) {
       this.ctx.font = "24px Acknowledge"
       this.ctx.textAlign = "center";
       this.ctx.fillStyle = "#FFFF00";
-      this.ctx.fillText("Loading...", 0, 35);
+      this.ctx.fillText("LOADING...", 0, 35);
+    } else if (this.loaded && !Object.keys(this.highscores).length) {
+      this.ctx.font = "24px Acknowledge"
+      this.ctx.textAlign = "center";
+      this.ctx.fillStyle = "#FFFF00";
+      this.ctx.fillText("NO HIGHSCORES YET", 0, 35);
     }
 
     Object.values(this.highscores).forEach((entry, index) => {
