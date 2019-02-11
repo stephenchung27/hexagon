@@ -1,7 +1,8 @@
 module.exports = {
   entry: './assets/js/hexagon.js',
   output: {
-    filename: './bundle.js'
+    filename: 'bundle.js',
+    path: '/'
   },
   resolve: {
     extensions: ['.js', '*']
