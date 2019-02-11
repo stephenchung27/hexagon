@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --watch --mode=development",
-    "predeploy": "npm run build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -17,10 +18,11 @@
   "bugs": {
     "url": "https://github.com/stephenchung27/hexagon/issues"
   },
-  "homepage": "https://github.com/stephenchung27/hexagon#readme",
+  "homepage": "https://github.com/stephenchung27/hexagon",
   "dependencies": {
     "babel-loader": "^8.0.5",
     "firebase": "^5.8.2",
+    "gh-pages": "^2.0.1",
     "source-map": "^0.7.3",
     "webpack": "^4.29.2",
     "webpack-cli": "^3.2.3"
