@@ -1,6 +1,7 @@
 # Hexagon
 
 [Live Link](http://stephenchung.io/hexagon/)
+![Screenshot](https://github.com/stephenchung27/hexagon/blob/master/Screen%20Shot%202019-02-27%20at%2011.19.36%20AM.png?raw=true)
 
 ## Background
 https://terrycavanaghgames.com/hexagon/
