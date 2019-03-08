@@ -135,29 +135,3 @@ export const updateColors = () => {
 ```
 
 `updateColors` is run with every frame so the color changing appear smooth.
-
-## Implementation Timeline
-
-**Day 1**: Setup all necessary Node modules and get Webpack up and running. Write a basic entry file and the bare bones versions of the scripts outlined above. Review the basic of canvas rendering. Goals for the day:
-- Get a green bundle with Webpack
-- Create a basic hexagon playing field
-
-**Day 2**: Create the logic behind the cursor rotating around the hexagon and the entire playing field rotating around the entire screen. Goals for the day:
-- Complete the `cursor.js` module
-- Successfully render a hexagon at the center of the view
-- Make the field rotate along with the cursor maintaining its position relative to the center hexagon
-
-**Day 3**: Create the larger hexagon converging logic and figure out the collision detection of the cursor and the larger hexagons. Add a score mechanism that counts the amount of hexagons the player is able to dodge. A play button and pause button should be implemented.
-- Finish the larger hexagon converging logic
-- Implement collision detection between the cursor and the larger hexagons
-- Create a scoring mechanism so the user can track the high score
-- Play and pause buttons should be implemented now that the game is functional
-
-**Day 4**: Add levels to the game where with every level the speed of the hexagons increase. Style the loading screen and include music with correct BPMs to go along with the level speed. Create the "pulsing" animation and the slow color changes. Goals for the day:
-- Create controls to increase the speed of the levels
-- Style the loading screen and the animation that plays in the background
-- Create the pulsing animation
-
-**Bonus Features**
-- [ ] Add a database to store all the highest scores
-- [ ] Add styled transitions from entering the game and losing and returning the the main screen
